@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>후기 상세 - 퍼스트베이비</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* index.html의 기본 스타일 복사 */
+        /* 필요한 스타일 추가 */
+        .review-detail {
+            max-width: 800px;
+            margin: 100px auto 0;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        .review-author {
+            display: flex;
+            align-items: center;
+        }
+        .review-author img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            margin-right: 1rem;
+            object-fit: cover;
+        }
+        .review-content {
+            line-height: 1.8;
+            color: #37474F;
+        }
+        .review-meta {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            color: #78909C;
+        }
+    </style>
+</head>
+<body>
+    <!-- 헤더 (index.html과 동일) -->
+    <header>
+        <nav>
+            <div class="logo">퍼스트<span>베이비</span></div>
+            <ul class="nav-links">
+                <li><a href="index.html#features">특징</a></li>
+                <li><a href="index.html#how-it-works">이용방법</a></li>
+                <li><a href="index.html#categories">카테고리</a></li>
+                <li><a href="index.html#testimonials">후기</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 후기 상세 섹션 -->
+    <section class="review-detail">
+        <div class="review-header">
+            <div class="review-author">
+                <img src="/api/placeholder/70/70" alt="사용자 이미지">
+                <div>
+                    <h2 class="author-name">김지은</h2>
+                    <p class="author-info">8개월 아기 엄마</p>
+                </div>
+            </div>
+            <div class="review-rating">★★★★★</div>
+        </div>
+        
+        <div class="review-content">
+            <p>첫 아이를 키우면서 젖병 선택으로 너무 고민했어요. 맘카페에서는 정보가 너무 많아 오히려 혼란스러웠는데, 퍼스트베이비에서 딱 맞는 젖병을 추천받았고 아이가 정말 잘 먹어요.</p>
+            
+            <p>특히 이 제품의 역류방지 꼭지 덕분에 수유 후 트림도 쉽게 하고, 가스도 덜 차는 것 같아요. 유리 젖병이라 세척도 쉽고 깨끗하게 사용할 수 있어 정말 만족합니다.</p>
+            
+            <p>워킹맘으로서 육아 정보를 찾는 시간이 너무 아까웠는데, 퍼스트베이비 덕분에 시간을 절약하고 가장 좋은 제품을 선택할 수 있었어요.</p>
+        </div>
+        
+        <div class="review-meta">
+            <span class="review-date">2023-08-15</span>
+            <span class="review-product">퓨어 네이처 젖병</span>
+        </div>
+    </section>
+
+    <!-- 푸터 (index.html과 동일) -->
+    <footer>
+        <!-- 기존 푸터 내용 -->
+    </footer>
+
+    <script>
+        // 페이지 로드 시 localStorage에서 후기 데이터 불러오기
+        window.onload = function() {
+            const savedReview = localStorage.getItem('selectedReview');
+            if (savedReview) {
+                const review = JSON.parse(savedReview);
+                
+                // 후기 정보 업데이트
+                document.querySelector('.author-name').textContent = review.author;
+                document.querySelector('.author-info').textContent = review.authorInfo || '8개월 아기 엄마';
+                document.querySelector('.review-rating').textContent = review.rating;
+                document.querySelector('.review-content').innerHTML = review.fullContent || review.content;
+                document.querySelector('.review-date').textContent = review.date;
+                document.querySelector('.review-product').textContent = review.product || '퓨어 네이처 젖병';
+
+                // localStorage 초기화
+                localStorage.removeItem('selectedReview');
+            }
+        };
+    </script>
+</body>
+</html>

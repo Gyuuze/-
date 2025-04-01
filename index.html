@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>퍼스트베이비 - 신생아 육아용품 비교 분석 플랫폼</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        
+        :root {
+            --ivory: #FFF8E1;
+            --light-blue: #E3F2FD;
+            --blue: #90CAF9;
+            --dark-blue: #64B5F6;
+            --text-color: #37474F;
+            --accent-color: #FF8A65;
+        }
+        
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--ivory);
+        }
+        
+        header {
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.3s;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--dark-blue);
+        }
+        
+        .logo span {
+            color: var(--accent-color);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('image/newborn-5036843_1280.jpg') center/cover no-repeat;
+            z-index: -1;
+        }
+        
+        .hero-content {
+            max-width: 1200px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background-color: rgba(255, 248, 225, 0.85);
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        
+        .hero-content.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .hero-text {
+            flex: 0 0 100%;
+            margin-bottom: 2rem;
+        }
+        
+        .hero-image {
+            display: none;
+        }
+        
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            color: var(--text-color);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: var(--text-color);
+            line-height: 1.7;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            font-size: 1.1rem;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.3s;
+            font-weight: 500;
+            box-shadow: 0 4px 10px rgba(255, 138, 101, 0.3);
+        }
+        
+        .btn:hover {
+            background-color: #FF7043;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(255, 138, 101, 0.4);
+        }
+        
+        .btn-secondary {
+            background-color: white;
+            color: var(--accent-color);
+            border: 2px solid var(--accent-color);
+            margin-left: 1rem;
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--accent-color);
+            color: white;
+        }
+        
+        .section {
+            padding: 5rem 1rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            color: #546E7A;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .features {
+            background-color: white;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background-color: var(--light-blue);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-card i {
+            font-size: 3rem;
+            color: var(--dark-blue);
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .how-it-works {
+            background-color: var(--light-blue);
+        }
+        
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+        }
+        
+        .step {
+            flex: 0 0 30%;
+            text-align: center;
+            position: relative;
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background-color: var(--dark-blue);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .step h3 {
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .step p {
+            color: #546E7A;
+        }
+        
+        .step:not(:last-child)::after {
+            content: "";
+            position: absolute;
+            top: 30px;
+            right: -15%;
+            width: 30%;
+            height: 2px;
+            background-color: var(--dark-blue);
+        }
+        
+        .categories {
+            background-color: white;
+        }
+        
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+        }
+        
+        .tab-btn {
+            padding: 1rem 2rem;
+            background-color: var(--light-blue);
+            border: none;
+            border-radius: 30px;
+            margin: 0 0.5rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .tab-btn.active {
+            background-color: var(--dark-blue);
+            color: white;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .product-card:hover .product-img img {
+            transform: scale(1.1);
+        }
+        
+        .product-info {
+            padding: 1.5rem;
+        }
+        
+        .product-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-info p {
+            color: #546E7A;
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+        }
+        
+        .product-price {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .product-rating {
+            color: #FFC107;
+        }
+        
+        .testimonials {
+            background-color: var(--light-blue);
+        }
+        
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        
+        .testimonial-slide {
+    background-color: white;
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    margin: 0 1rem;
+    transition: all 0.3s;
+}
+
+.testimonial-slide:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+        
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .testimonial-author img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 1rem;
+            object-fit: cover;
+        }
+        
+        .author-info h4 {
+            margin-bottom: 0.2rem;
+        }
+        
+        .author-info p {
+            color: #78909C;
+            font-size: 0.9rem;
+        }
+        
+        .cta {
+            background: linear-gradient(135deg, var(--blue) 0%, var(--dark-blue) 100%);
+            color: white;
+            text-align: center;
+            padding: 5rem 1rem;
+        }
+        
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .cta p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .cta .btn {
+            background-color: white;
+            color: var(--dark-blue);
+        }
+        
+        .cta .btn:hover {
+            background-color: var(--ivory);
+        }
+        
+        footer {
+            background-color: #37474F;
+            color: white;
+            padding: 3rem 1rem;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: white;
+        }
+        
+        .footer-logo span {
+            color: var(--accent-color);
+        }
+        
+        .footer-links h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: #B0BEC5;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #455A64;
+            color: white;
+            margin-right: 0.8rem;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #455A64;
+            color: #B0BEC5;
+        }
+        
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-text, .hero-image {
+                flex: 0 0 100%;
+            }
+            
+            .hero-image {
+                margin-top: 3rem;
+                text-align: center;
+            }
+            
+            .steps {
+                flex-direction: column;
+            }
+            
+            .step {
+                margin-bottom: 3rem;
+            }
+            
+            .step:not(:last-child)::after {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .btn {
+                display: block;
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+            
+            .btn-secondary {
+                margin-left: 0;
+            }
+        }
+    </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- 헤더 -->
+    <header>
+        <nav>
+            <div class="logo">퍼스트<span>베이비</span></div>
+            <ul class="nav-links">
+                <li><a href="#features">특징</a></li>
+                <li><a href="#how-it-works">이용방법</a></li>
+                <li><a href="#categories">카테고리</a></li>
+                <li><a href="#testimonials">후기</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 히어로 섹션 -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>신생아 육아용품 비교 분석, <br>단 1분이면 충분합니다</h1>
+                <p style="margin-bottom: 30px;">유튜브, 맘카페에서 시간 낭비하지 마세요. 퍼스트베이비는 아기 피부 타입과 성분을 분석해 엄선된 육아용품만 추천합니다. 시간이 부족한 워킹맘, 워킹대디를 위한 스마트한 선택!</p>
+                <a href="#categories" class="btn">제품 비교하기</a>
+                <a href="#how-it-works" class="btn btn-secondary">이용 방법</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 특징 섹션 -->
+    <section id="features" class="section features">
+        <div class="container">
+            <h2 class="section-title">퍼스트베이비의 특별함</h2>
+            <p class="section-subtitle">퍼스트베이비를 이용하면 좋은 점?</p>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div style="font-size: 2.5rem; font-weight: bold; color: var(--dark-blue); margin-bottom: 1rem;">1</div>
+                    <h3>시간 절약</h3>
+                    <p>1분 내로 아기에게 딱 맞는 제품을 찾아보세요. 더 이상 리뷰와 정보를 수집하느라 시간을 낭비하지 마세요.</p>
+                </div>
+                <div class="feature-card">
+                    <div style="font-size: 2.5rem; font-weight: bold; color: var(--dark-blue); margin-bottom: 1rem;">2</div>
+                    <h3>검증된 리뷰</h3>
+                    <p>구매 인증을 거친 실제 사용자들의 솔직한 후기만 제공합니다. 과대광고나 거짓 리뷰는 없습니다.</p>
+                </div>
+                <div class="feature-card">
+                    <div style="font-size: 2.5rem; font-weight: bold; color: var(--dark-blue); margin-bottom: 1rem;">3</div>
+                    <h3>상세 분석</h3>
+                    <p>성분, 원산지, 구조, 기능 등 세세한 부분까지 모두 분석하여 제공합니다.</p>
+                </div>
+                <div class="feature-card">
+                    <div style="font-size: 2.5rem; font-weight: bold; color: var(--dark-blue); margin-bottom: 1rem;">4</div>
+                    <h3>맞춤형 추천</h3>
+                    <p>아기의 피부 타입과 상황에 맞는 제품을 찾아 맞춤형으로 추천해 드립니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 이용 방법 섹션 -->
+    <section id="how-it-works" class="section how-it-works">
+        <div class="container">
+            <h2 class="section-title">이용 방법</h2>
+            <p class="section-subtitle">단 3단계만으로 아기에게 딱 맞는 제품을 찾을 수 있습니다</p>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>카테고리 선택</h3>
+                    <p>젖병, 기저귀 등 필요한 제품 카테고리를 선택하세요.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>필터 설정</h3>
+                    <p>아기의 피부 타입, 월령, 예산 등 필요한 조건을 선택하세요.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>결과 확인</h3>
+                    <p>가장 적합한 제품들을 비교하고 선택하세요.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 카테고리 섹션 -->
+    <section id="categories" class="section categories">
+        <div class="container">
+            <h2 class="section-title">제품 카테고리</h2>
+            <p class="section-subtitle">신생아에게 꼭 필요한 육아용품을 카테고리별로 만나보세요</p>
+            
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="bottles">젖병</button>
+                <button class="tab-btn" data-tab="diapers">기저귀</button>
+            </div>
+            
+            <!-- 세분화 카테고리 필터 추가 -->
+            <div class="subcategory-filter" style="margin-bottom: 2rem; text-align: center;">
+                <div style="margin-bottom: 1rem; font-weight: 500;">세부 카테고리</div>
+                <div class="filter-buttons" style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+                    <button class="filter-btn active" data-filter="all" style="padding: 0.5rem 1rem; background-color: var(--dark-blue); color: white; border: none; border-radius: 20px; cursor: pointer; transition: all 0.3s;">전체보기</button>
+                    <button class="filter-btn" data-filter="functionality" style="padding: 0.5rem 1rem; background-color: var(--light-blue); color: var(--text-color); border: none; border-radius: 20px; cursor: pointer; transition: all 0.3s;">기능성</button>
+                    <button class="filter-btn" data-filter="safety" style="padding: 0.5rem 1rem; background-color: var(--light-blue); color: var(--text-color); border: none; border-radius: 20px; cursor: pointer; transition: all 0.3s;">안전성</button>
+                    <button class="filter-btn" data-filter="structure" style="padding: 0.5rem 1rem; background-color: var(--light-blue); color: var(--text-color); border: none; border-radius: 20px; cursor: pointer; transition: all 0.3s;">구조(형태)</button>
+                </div>
+            </div>
+            
+            <div id="bottles" class="tab-content active">
+                <div class="product-grid">
+                    <div class="product-card" data-category="safety structure">
+                        <a href="product-detail.html?id=1" 
+                        onclick="saveProductData('1')" 
+                        style="text-decoration: none; color: inherit; display: block;">
+                            <div class="product-img">
+                                <img src="newborn-5036843_1280.jpg" alt="젖병 제품 이미지">
+                            </div>
+                            <div class="product-info">
+                                <h3>퓨어 네이처 젖병</h3>
+                                <p><strong>성분:</strong> BPA 프리, 무독성 실리콘</p>
+                                <p><strong>원산지:</strong> 대한민국</p>
+                                <p><strong>특징:</strong> 유리 젖병, 역류방지 꼭지</p>
+                                <div class="category-tags" style="margin: 8px 0;">
+                                    <span style="background-color: #E3F2FD; font-size: 0.8rem; padding: 2px 8px; border-radius: 12px; margin-right: 5px;">안전성</span>
+                                    <span style="background-color: #E3F2FD; font-size: 0.8rem; padding: 2px 8px; border-radius: 12px;">구조(형태)</span>
+                                </div>
+                                <div class="product-meta">
+                                    <div class="product-price">32,000원</div>
+                                    <div class="product-rating">★★★★★</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="product-card" data-category="functionality structure">
+<a href="product-detail.html?id=1" 
+   onclick="saveProductData('1')" 
+   style="text-decoration: none; color: inherit; display: block;">
+                            <div class="product-img">
+                                <img src="/api/placeholder/280/200" alt="젖병 제품 이미지">
+                            </div>
+                            <div class="product-info">
+                                <h3>에코 베이비 젖병</h3>
+                                <p><strong>성분:</strong> BPA 프리, 식품용 플라스틱</p>
+                                <p><strong>원산지:</strong> 미국</p>
+                                <p><strong>특징:</strong> 넓은 입구, 자연 흡입감 꼭지</p>
+                                <div class="category-tags" style="margin: 8px 0;">
+                                    <span style="background-color: #E3F2FD; font-size: 0.8rem; padding: 2px 8px; border-radius: 12px; margin-right: 5px;">기능성</span>
+                                    <span style="background-color: #E3F2FD; font-size: 0.8rem; padding: 2px 8px; border-radius: 12px;">구조(형태)</span>
+                                </div>
+                                <div class="product-meta">
+                                    <div class="product-price">28,500원</div>
+                                    <div class="product-rating">★★★★☆</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="product-card" data-category="functionality safety">
+                        <a href="product-detail.html?id=1" 
+                        onclick="saveProductData('1')" 
+                        style="text-decoration: none; color: inherit; display: block;">
+                        <div class="product-img">
+                            <img src="/api/placeholder/280/200" alt="젖병 제품 이미지">
+                        </div>
+                        <div class="product-info">
+                            <h3>소프트 터치 젖병</h3>
+                            <p><strong>성분:</strong> 의료용 실리콘, 무독성</p>
+                            <p><strong>원산지:</strong> 독일</p>
+                            <p><strong>특징:</strong> 부드러운 촉감, 공기 방지 시스템</p>
+                            <div class="category-tags" style="margin: 8px 0;">
+                                <span style="background-color: #E3F2FD; font-size: 0.8rem; padding: 2px 8px; border-radius: 12px; margin-right: 5px;">기능성</span>
+                                <span style="background-color: #E3F2FD; font-size: 0.8rem; padding: 2px 8px; border-radius: 12px;">안전성</span>
+                            </div>
+                            <div class="product-meta">
+                                <div class="product-price">42,000원</div>
+                                <div class="product-rating">★★★★★</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="diapers" class="tab-content">
+                <div class="product-grid">
+                    <div class="product-card" data-category="safety functionality">
+                        <a href="product-detail.html?id=1" 
+                        onclick="saveProductData('1')" 
+                        style="text-decoration: none; color: inherit; display: block;">
+                        <div class="product-img">
+                            <img src="/api/placeholder/280/200" alt="기저귀 제품 이미지">
+                        </div>
+                        <div class="product-info">
+                            <h3>에코 친환경 기저귀</h3>
+                            <p><strong>성분:</strong> 유기농 면, 천연 흡수체</p>
+                            <p><strong>원산지:</strong> 일본</p>
+                            <p><strong>특징:</strong> 민감한 피부용, 빠른 흡수력</p>
+                            <div class="category-tags" style="margin: 8px 0;">
+                                <span style="background-color: #E3F2FD; font-size: 0.8rem; padding: 2px 8px; border-radius: 12px; margin-right: 5px;">안전성</span>
+                                <span style="background-color: #E3F2FD; font-size: 0.8rem; padding: 2px 8px; border-radius: 12px;">기능성</span>
+                            </div>
+                            <div class="product-meta">
+                                <div class="product-price">56,000원</div>
+                                <div class="product-rating">★★★★★</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card" data-category="functionality structure">
+                        <div class="product-img">
+                            <img src="/api/placeholder/280/200" alt="기저귀 제품 이미지">
+                        </div>
+                        <div class="product-info">
+                            <h3>소프트 터치 기저귀</h3>
+                            <p><strong>성분:</strong> 면, 고흡수성 폴리머</p>
+                            <p><strong>원산지:</strong> 대한민국</p>
+                            <p><strong>특징:</strong> 통기성 좋음, 누수 방지</p>
+                            <div class="category-tags" style="margin: 8px 0;">
+                                <span style="background-color: #E3F2FD; font-size: 0.8rem; padding: 2px 8px; border-radius: 12px; margin-right: 5px;">기능성</span>
+                                <span style="background-color: #E3F2FD; font-size: 0.8rem; padding: 2px 8px; border-radius: 12px;">구조(형태)</span>
+                            </div>
+                            <div class="product-meta">
+                                <div class="product-price">48,000원</div>
+                                <div class="product-rating">★★★★☆</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card" data-category="safety structure">
+                        <div class="product-img">
+                            <img src="/api/placeholder/280/200" alt="기저귀 제품 이미지">
+                        </div>
+                        <div class="product-info">
+                            <h3>프리미엄 기저귀</h3>
+                            <p><strong>성분:</strong> 피부 친화적 소재, 무향</p>
+                            <p><strong>원산지:</strong> 스웨덴</p>
+                            <p><strong>특징:</strong> 12시간 지속, 알로에 함유</p>
+                            <div class="category-tags" style="margin: 8px 0;">
+                                <span style="background-color: #E3F2FD; font-size: 0.8rem; padding: 2px 8px; border-radius: 12px; margin-right: 5px;">안전성</span>
+                                <span style="background-color: #E3F2FD; font-size: 0.8rem; padding: 2px 8px; border-radius: 12px;">구조(형태)</span>
+                            </div>
+                            <div class="product-meta">
+                                <div class="product-price">62,000원</div>
+                                <div class="product-rating">★★★★★</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- 후기 섹션 -->
+<section id="testimonials" class="section testimonials">
+    <div class="container">
+        <h2 class="section-title">실제 사용 후기</h2>
+        <p class="section-subtitle">퍼스트베이비를 통해 제품을 선택한 부모님들의 진짜 이야기</p>
+        
+        <div class="testimonial-slider">
+            <a href="review-detail.html?id=1" 
+            onclick="saveReviewData('1')" 
+            style="text-decoration: none; color: inherit; display: block; cursor: pointer;">
+             <div class="testimonial-slide">
+                    <p class="testimonial-text">"첫 아이를 키우면서 젖병 선택으로 너무 고민했어요. 맘카페에서는 정보가 너무 많아 오히려 혼란스러웠는데, 퍼스트베이비에서 딱 맞는 젖병을 추천받았고 아이가 정말 잘 먹어요. 시간 절약은 덤이었습니다."</p>
+                    <div class="testimonial-author">
+                        <img src="/api/placeholder/50/50" alt="사용자 이미지">
+                        <div class="author-info">
+                            <h4>김지은 님</h4>
+                            <p>8개월 아기 엄마</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>   
+
+    <!-- CTA 섹션 -->
+    <section class="cta">
+        <div class="container">
+            <h2>지금 바로 시작하세요</h2>
+            <p>단 1분 만에 아기에게 가장 좋은 제품을 찾을 수 있습니다. 시간이 부족한 당신을 위한 최고의 선택!</p>
+            <a href="#categories" class="btn">제품 확인하기</a>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-about">
+                <div class="footer-logo">퍼스트<span>베이비</span></div>
+                <p>퍼스트베이비는 신생아 육아용품 비교 분석 플랫폼으로, 바쁜 부모님들이 아기에게 최적화된 제품을 쉽고 빠르게 찾을 수 있도록 도와드립니다.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-links">
+                <h3>바로가기</h3>
+                <ul>
+                    <li><a href="#features">특징</a></li>
+                    <li><a href="#how-it-works">이용방법</a></li>
+                    <li><a href="#categories">카테고리</a></li>
+                    <li><a href="#testimonials">후기</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h3>카테고리</h3>
+                <ul>
+                    <li><a href="#bottles">젖병</a></li>
+                    <li><a href="#diapers">기저귀</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h3>고객센터</h3>
+                <ul>
+                    <li><a href="#">자주 묻는 질문</a></li>
+                    <li><a href="#">문의하기</a></li>
+                    <li><a href="#">이용약관</a></li>
+                    <li><a href="#">개인정보처리방침</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2025 퍼스트베이비. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- 자바스크립트 -->
+    <script>
+        // 마우스 움직임에 따라 히어로 콘텐츠 표시
+        document.addEventListener('DOMContentLoaded', function() {
+            const heroContent = document.querySelector('.hero-content');
+            
+            // 마우스 움직임 감지
+            document.addEventListener('mousemove', function() {
+                heroContent.classList.add('visible');
+            });
+            
+            // 모바일을 위한 터치 이벤트
+            document.addEventListener('touchstart', function() {
+                heroContent.classList.add('visible');
+            });
+        });
+        
+        // 탭 기능
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const tabId = button.dataset.tab;
+                
+                // 모든 탭 비활성화
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                // 선택한 탭 활성화
+                button.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+                
+                // 필터 리셋
+                resetFilter();
+            });
+        });
+        
+        // 세분화 카테고리 필터 기능
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const productCards = document.querySelectorAll('.product-card');
+        
+        function resetFilter() {
+            // 모든 필터 버튼 초기화
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            document.querySelector('.filter-btn[data-filter="all"]').classList.add('active');
+            
+            // 모든 제품 카드 보이기
+            productCards.forEach(card => {
+                card.style.display = 'block';
+            });
+        }
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const filter = button.dataset.filter;
+                
+                // 버튼 스타일 변경
+                filterButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    btn.style.backgroundColor = 'var(--light-blue)';
+                    btn.style.color = 'var(--text-color)';
+                });
+                button.classList.add('active');
+                button.style.backgroundColor = 'var(--dark-blue)';
+                button.style.color = 'white';
+                
+                // 카드 필터링
+                productCards.forEach(card => {
+                    if (filter === 'all') {
+                        card.style.display = 'block';
+                    } else {
+                        if (card.dataset.category && card.dataset.category.includes(filter)) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    }
+                });
+            });
+        });
+        
+        // 스크롤 이벤트 (스무스 스크롤)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // 스크롤 시 헤더 스타일 변경
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        // 제품 데이터 객체 추가
+const productData = {
+    '1': {
+        name: '퓨어 네이처 젖병',
+        price: '32,000원',
+        rating: '★★★★★',
+        description: '무독성 실리콘과 BPA 프리 소재를 사용하여 아기에게 안전하며, 역류방지 꼭지 설계로 수유 시 불편함을 최소화합니다.',
+        details: [
+            '무독성 실리콘과 BPA 프리 소재를 사용하여 아기에게 안전',
+            '특수 설계된 유리 용기는 열에 강하고 내구성이 뛰어남',
+            '모유와 유사한 흐름을 제공하는 젖병 꼭지'
+        ],
+        specs: {
+            material: 'BPA 프리, 무독성 실리콘',
+            origin: '대한민국',
+            features: '유리 젖병, 역류방지 꼭지',
+            volume: '200ml',
+            size: '높이 18cm, 지름 6.5cm',
+            cleaning: '식기세척기 사용 가능, 전자레인지 사용 가능(젖병 꼭지 제외)',
+            manufacturer: '퓨어베이비',
+            warranty: '구매일로부터 1년'
+        }
+    },
+    '2': {
+        name: '에코 베이비 젖병',
+        price: '28,500원',
+        rating: '★★★★☆',
+        description: 'BPA 프리, 식품용 플라스틱 소재의 젖병으로 넓은 입구와 자연 흡입감 꼭지를 특징으로 합니다.',
+        details: [
+            '식품용 플라스틱 소재 사용',
+            '넓은 입구로 사용 편의성 증가',
+            '자연스러운 흡입감을 제공하는 꼭지'
+        ],
+        specs: {
+            material: 'BPA 프리, 식품용 플라스틱',
+            origin: '미국',
+            features: '넓은 입구, 자연 흡입감 꼭지',
+            volume: '180ml',
+            size: '높이 17cm, 지름 6cm',
+            cleaning: '손세척 권장, 중성세제 사용',
+            manufacturer: '에코베이비',
+            warranty: '구매일로부터 6개월'
+        }
+    },
+    '3': {
+        name: '소프트 터치 젖병',
+        price: '42,000원',
+        rating: '★★★★★',
+        description: '의료용 실리콘 소재의 부드러운 촉감과 공기 방지 시스템을 갖춘 프리미엄 젖병입니다.',
+        details: [
+            '의료용 실리콘 소재로 안전성 보장',
+            '부드러운 촉감으로 아기에게 편안함 제공',
+            '혁신적인 공기 방지 시스템'
+        ],
+        specs: {
+            material: '의료용 실리콘, 무독성',
+            origin: '독일',
+            features: '부드러운 촉감, 공기 방지 시스템',
+            volume: '220ml',
+            size: '높이 19cm, 지름 7cm',
+            cleaning: '스팀 살균 가능, 전문 세척 추천',
+            manufacturer: '소프트케어',
+            warranty: '구매일로부터 1년'
+        }
+    }
+};
+
+// 후기 데이터 추가
+const reviewData = {
+    '1': {
+        author: '김지은',
+        date: '2023-08-15',
+        rating: '★★★★★',
+        content: '첫 아이를 키우면서 젖병 선택으로 너무 고민했어요...',
+        fullContent: `
+            <p>첫 아이를 키우면서 젖병 선택으로 너무 고민했어요. 맘카페에서는 정보가 너무 많아 오히려 혼란스러웠는데, 퍼스트베이비에서 딱 맞는 젖병을 추천받았고 아이가 정말 잘 먹어요.</p>
+            
+            <p>특히 이 제품의 역류방지 꼭지 덕분에 수유 후 트림도 쉽게 하고, 가스도 덜 차는 것 같아요. 유리 젖병이라 세척도 쉽고 깨끗하게 사용할 수 있어 정말 만족합니다.</p>
+            
+            <p>워킹맘으로서 육아 정보를 찾는 시간이 너무 아까웠는데, 퍼스트베이비 덕분에 시간을 절약하고 가장 좋은 제품을 선택할 수 있었어요.</p>
+        `,
+        authorInfo: '8개월 아기 엄마',
+        product: '퓨어 네이처 젞병'
+    }
+    // 다른 후기들 추가 가능
+};
+
+
+// 제품 상세 페이지로 데이터 전달 함수 추가
+function saveProductData(productId) {
+    // 선택된 제품 데이터를 localStorage에 저장
+    localStorage.setItem('selectedProduct', JSON.stringify(productData[productId]));
+}
+
+// 후기 상세 페이지로 데이터 전달 함수 추가
+function saveReviewData(reviewId) {
+    // 선택된 후기 데이터를 localStorage에 저장
+    localStorage.setItem('selectedReview', JSON.stringify(reviewData[reviewId]));
+}
+
+// 기존 스크립트에 이 코드들을 추가하세요
+    </script>
+</body>
+</html>
